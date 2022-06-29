@@ -12,6 +12,9 @@
             <li class="breadcrumb-item">
               <a href="<?= site_url('/acl/menu/menu_sub/' . $id_menu) ?>">Sub Menu</a>
             </li>
+            <li class="breadcrumb-item">
+              <a href="<?= site_url('/acl/menu/menu_sub_sub/' . $id_menu . '/' . $id_menu_sub) ?>">Sub Sub Menu</a>
+            </li>
           </ol>
         </div>
       </div>
@@ -39,7 +42,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Daftar Sub Menu <?php print $menu->nm_menu ?></h4>
+                <h4 class="card-title"> <i class="fa fa-users" aria-hidden="true"></i> Daftar Sub Sub Menu <?php print $sub_menu->nm_menu_sub ?></h4>
               </div>
               <div class="card-content">
                 <div class="card-body card-dashboard">
@@ -57,22 +60,22 @@
                       <tbody>
                         <?php
                         $no = 1;
-                        foreach ($sub_menu_list as $vs) { ?>
+                        foreach ($sub_sub_menu_list as $vs) { ?>
                           <tr>
                             <td><?php print  $no; ?></td>
-                            <td><?php print  $vs->nm_menu_sub ?>
+                            <td><?php print  $vs->nm_menu_sub_sub ?>
                             </td>
                             <td>
                               <?php print  $vs->url . '<br>' . $vs->api_url . ' / ' . $vs->id; ?>
                               <br>Order : <?php echo $vs->order ?>
                             </td>
                             <td style="text-align: center">
-                              <a href="<?= site_url('/acl/menu/edit_sub_menu/' . $vs->id_menu . '/' . $vs->id); ?>">
+                              <a href="<?= site_url('/acl/menu/edit_sub_sub_menu/' . $vs->id_menu . '/' . $vs->id_menu_sub . '/' . $vs->id); ?>">
                                 <button type="button" class="btn  btn-info btn-sm ">
                                   <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                                 </button>
                               </a>
-                              <a href="<?= site_url('acl/menu/delete_sub_menu/' . $vs->id_menu . '/' . $vs->id) ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini..?')">
+                              <a href="<?= site_url('acl/menu/delete_sub_sub_menu/' . $vs->id_menu . '/' . $vs->id_menu_sub . '/' . $vs->id) ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini..?')">
                                 <button type="button" class="btn  btn-warning btn-sm ">
                                   <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                 </button>
@@ -99,22 +102,23 @@
           <div class="col-md-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> <i class="fa fa-plus" aria-hidden="true"></i> Edit Sub Menu</h4>
+                <h4 class="card-title"> <i class="fa fa-plus" aria-hidden="true"></i> Edit Sub Sub Menu</h4>
               </div>
               <div class="card-content">
                 <div class="card-body">
-                  <form class="form form-horizontal" method="POST" action="<?= site_url('acl/menu/update_sub_menu') ?>" novalidate>
+                  <form class="form form-horizontal" method="POST" action="<?= site_url('acl/menu/update_sub_sub_menu') ?>" novalidate>
                     <div class="form-body">
                       <div class="row">
                         <div class="col-12">
                           <div class="form-group row">
                             <div class="col-md-4">
-                              <span>Nama Sub Menu</span>
+                              <span>Nama Sub Sub Menu</span>
                             </div>
                             <div class="col-md-8">
+                              <input type="hidden" name='id_menu_sub' value="<?php print $id_menu_sub; ?>">
                               <input type="hidden" name='id_menu' value="<?php print $id_menu; ?>">
-                              <input type="hidden" name='id' value="<?php print $sub_menu->id; ?>">
-                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_menu->nm_menu_sub; ?>" type="text" name="nm_menu_sub" required data-validation-required-message="">
+                              <input type="hidden" name='id' value="<?php print $sub_sub_menu->id; ?>">
+                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_sub_menu->nm_menu_sub_sub; ?>" type="text" name="nm_menu_sub_sub" required data-validation-required-message="">
                             </div>
                           </div>
                         </div>
@@ -124,7 +128,7 @@
                               <span>Url</span>
                             </div>
                             <div class="col-md-8">
-                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_menu->url; ?>" type="text" name="url" require required data-validation-required-message="">
+                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_sub_menu->url; ?>" type="text" name="url" require required data-validation-required-message="">
                             </div>
                           </div>
                         </div>
@@ -134,7 +138,7 @@
                               <span>API Url</span>
                             </div>
                             <div class="col-md-8">
-                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_menu->api_url; ?>" type="text" name="api_url" require required data-validation-required-message="">
+                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_sub_menu->api_url; ?>" type="text" name="api_url" require required data-validation-required-message="">
                             </div>
                           </div>
                         </div>
@@ -144,7 +148,7 @@
                               <span>Icon</span>
                             </div>
                             <div class="col-md-8">
-                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_menu->icon; ?>" type="text" name="icon">
+                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_sub_menu->icon; ?>" type="text" name="icon">
                             </div>
                           </div>
                         </div>
@@ -154,7 +158,7 @@
                               <span>Order</span>
                             </div>
                             <div class="col-md-8">
-                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_menu->order; ?>" type="number" name="order" required data-validation-required-message="">
+                              <input class="form-control" id="basicInput" placeholder="" value="<?php print $sub_sub_menu->order; ?>" type="number" name="order" required data-validation-required-message="">
                             </div>
                           </div>
                         </div>

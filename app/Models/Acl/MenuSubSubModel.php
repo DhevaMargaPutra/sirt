@@ -4,13 +4,13 @@ namespace App\Models\Acl;
 
 use CodeIgniter\Model;
 
-class MenuModel extends Model
+class MenuSubSubModel extends Model
 {
-	protected $table = 'core_menu';
+	protected $table = 'core_menu_sub_sub';
 	protected $primaryKey = 'id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['nm_menu', 'url', 'api_url', 'sts', 'order', 'icon'];
+	protected $allowedFields = ['icon', 'nm_menu_sub_sub', 'url', 'api_url', 'sts', 'order', 'id_menu', 'id_menu_sub'];
 	protected $useTimestamps = false;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';
